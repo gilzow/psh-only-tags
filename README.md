@@ -6,3 +6,4 @@ boo
 bar
 bax
 fax
+faz
