@@ -12,3 +12,4 @@ bad
 baz
 foo
 fod
+bat
