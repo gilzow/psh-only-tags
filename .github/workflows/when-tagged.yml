@@ -8,5 +8,8 @@ jobs:
   we-b-tagged:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "we were tagged"
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: echo "The tag that triggered this workflow is ${{ github.ref_name }}"
 
