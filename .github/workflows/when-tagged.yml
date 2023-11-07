@@ -1,6 +1,8 @@
 name: fire when tagged
 on:
-  create
+  push:
+    tags:
+      - '*'
 
 jobs:
   we-b-tagged:
