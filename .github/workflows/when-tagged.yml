@@ -12,8 +12,13 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.event.repository.default_branch }}
-      - run: |
+      - id: get-latest-tag
+        run: |
           latestTag=$(git describe --abbrev=0 --tags)
           echo "::notice::The latest tag should be ${latestTag}"
-      - run: echo "::notice::The tag that triggered this workflow is ${{ github.ref_name }}"
+          echo "latest_tag=${latestTag}" >> $GITHUB_OUTPUT
+      - if: github.ref_name = steps.get-latest-tag.outputs.latest_tag
+        run: |
+          echo "::notice::The latest tag ${{ steps.get-latest-tag.outputs.latest_tag }} is equal to the trigger tag ${{ github.ref_name }}
+      
 
