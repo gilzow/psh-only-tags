@@ -48,10 +48,16 @@ jobs:
           platform ssh-cert:load --new
       - run: |
           pshSubDomain=$(platform p:info region)
-          echo "Adding psh subdomain ${pshSubDomain} to known hosts"
-          ssh-keyscan -t rsa "${pshSubDomain}" >> ~/.ssh/known_hosts
+          pshGitAddress="git.${pshSubDomain}"
+          echo "Adding psh git address ${pshGitAddress} to known hosts"
+          ssh-keyscan -t rsa "${pshGitAddress}" >> ~/.ssh/known_hosts
       - run: |
           echo "Pushing tag ${{ github.ref_name }} to platform..."
           git push platform refs/tags/${{ github.ref_name }}^{commit}:refs/heads/main
 
+      - name: Setup tmate session
+        if: ${{ failure() }}
+        uses: mxschmitt/action-tmate@v3
+        with:
+          detached: true
 
