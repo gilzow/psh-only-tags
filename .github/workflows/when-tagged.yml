@@ -53,7 +53,8 @@ jobs:
           ssh-keyscan -t rsa "${pshGitAddress}" >> ~/.ssh/known_hosts
       - run: |
           echo "Pushing tag ${{ github.ref_name }} to platform..."
-          git push platform refs/tags/${{ github.ref_name }}^{commit}:refs/heads/main
+          pshDefaultBranch=$(platform project:info default_branch)
+          git push platform refs/tags/${{ github.ref_name }}^{commit}:refs/heads/${pshDefaultBranch}
 
       - name: Setup tmate session
         if: ${{ failure() }}
