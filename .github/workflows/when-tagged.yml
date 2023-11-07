@@ -11,5 +11,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - run: echo "The tag that triggered this workflow is ${{ github.ref_name }}"
+      - run: |
+          latestTag=$(git describe --abbrev=0 --tags)
+          echo "::notice::The latest tag should be ${latestTag}"
+      - run: echo "::notice::The tag that triggered this workflow is ${{ github.ref_name }}"
 
