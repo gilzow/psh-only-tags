@@ -47,6 +47,10 @@ jobs:
           echo "set up a new ssh cert"
           platform ssh-cert:load --new
       - run: |
+          pshSubDomain=$(platform p:info region)
+          echo "Adding psh subdomain ${pshSubDomain} to known hosts"
+          ssh-keyscan -t rsa "${pshSubDomain}" >> ~/.ssh/known_hosts
+      - run: |
           echo "Pushing tag ${{ github.ref_name }} to platform..."
           git push platform refs/tags/${{ github.ref_name }}^{commit}:refs/heads/main
 
