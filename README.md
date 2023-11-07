@@ -10,3 +10,4 @@ faz
 fad
 bad
 baz
+foo
