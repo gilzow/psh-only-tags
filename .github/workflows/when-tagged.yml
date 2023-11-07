@@ -1,0 +1,10 @@
+name: fire when tagged
+on:
+  create
+
+jobs:
+  we-b-tagged:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "we were tagged"
+
