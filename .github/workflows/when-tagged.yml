@@ -47,7 +47,7 @@ jobs:
           echo "set up a new ssh cert"
           platform ssh-cert:load --new
       - run: |
-          echo "our git remotes?"
-          git remote -v
+          echo "Pushing tag ${{ github.ref_name }} to platform..."
+          git push platform refs/tags/${{ github.ref_name }}^{commit}:refs/heads/main
 
 
