@@ -47,10 +47,12 @@ jobs:
           echo "set up a new ssh cert"
           platform ssh-cert:load --new
       - run: |
-          pshSubDomain=$(platform p:info region)
-          pshGitAddress="git.${pshSubDomain}"
-          echo "Adding psh git address ${pshGitAddress} to known hosts"
-          ssh-keyscan -t rsa "${pshGitAddress}" >> ~/.ssh/known_hosts
+          echo "What does our ssh config look like?"
+          cat /home/runner/.ssh/config
+          # pshSubDomain=$(platform p:info region)
+          # pshGitAddress="git.${pshSubDomain}"
+          # echo "Adding psh git address ${pshGitAddress} to known hosts"
+          # ssh-keyscan -t rsa "${pshGitAddress}" >> ~/.ssh/known_hosts
       - run: |
           echo "Pushing tag ${{ github.ref_name }} to platform..."
           pshDefaultBranch=$(platform project:info default_branch)
