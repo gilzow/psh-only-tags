@@ -3,7 +3,9 @@ on:
   push:
     tags:
       - '*'
-
+    branches:
+      - main
+      - master
 jobs:
   should-we-push:
     runs-on: ubuntu-latest
